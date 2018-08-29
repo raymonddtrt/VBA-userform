@@ -35,3 +35,21 @@ End Sub
 Private Sub CommandButton1_Click()
 ComboBox1.DropDown  '顯示下拉方塊的清單
 End Sub
+
+'***********************************************
+'listBox和combobox操作方式幾乎一樣
+'listbox可以使用.MultiSelect屬性
+Private Sub UserForm_Initialize()
+With ListBox1
+'RowSource和addItem只能選一個
+    .RowSource = ThisWorkbook.Worksheets(1).Name & "!A1:B10"
+    .ColumnCount = 2
+    .ColumnHeads = True
+'    For i = 1 To 10
+'        .AddItem i
+'    Next
+    .MultiSelect = fmMultiSelectMulti
+    .MultiSelect = fmMultiSelectSingle
+    .MultiSelect = fmMultiSelectExtended
+End With
+End Sub
