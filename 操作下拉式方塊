@@ -1,0 +1,37 @@
+'
+Private Sub UserForm_Initialize()
+With ComboBox1
+'RowSource和addItem只能選一個
+    .RowSource = ThisWorkbook.Worksheets(1).Name & "!A1:A10"
+    .ColumnCount = 1
+    .ColumnHeads = True
+'    For i = 1 To 10
+'        .AddItem i
+'    Next 
+End With
+End Sub
+
+Private Sub ComboBox1_Change()
+With ComboBox1
+    If .ListIndex = -1 Then
+        MsgBox "沒選擇項目"
+    Else
+        MsgBox "選擇的項目為" & .List(.Value - 1, 1)
+    End If
+End With
+End Sub
+
+Private Sub ComboBox1_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+With ComboBox1
+    If .ListIndex = -1 Then
+        MsgBox "請選擇項目"
+        Cancel = True '取消此事件，也就是取消"離開"這個動作
+    Else
+        MsgBox "選擇的項目為" & .List(.Value - 1, 1)
+    End If
+End With
+End Sub
+
+Private Sub CommandButton1_Click()
+ComboBox1.DropDown  '顯示下拉方塊的清單
+End Sub
