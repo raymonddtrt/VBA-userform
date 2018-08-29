@@ -1,0 +1,26 @@
+'Exit事件，可以理解為"當要離開TextBox1時"
+Private Sub TextBox1_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+With TextBox1
+    If Len(.Text) > 0 Then
+        If IsNumeric(.Text) Then
+            If Len(.Text) > 5 Then
+                MsgBox "請輸入5位以下的數字"
+                .Value = ""
+                Cancel = True
+            End If
+        Else
+            MsgBox "無法輸入數字以外的資料"
+            .Value = ""
+            Cancel = True
+        End If
+    End If
+End With
+End Sub
+
+'keypress事件，可理解為"當你輸入的時候"
+Private Sub TextBox1_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+If (KeyAscii < Asc("a") Or KeyAscii > Asc("z")) And (KeyAscii < Asc("A") Or KeyAscii > Asc("Z")) Then
+    KeyAscii = 0
+    Beep
+End If
+End Sub
