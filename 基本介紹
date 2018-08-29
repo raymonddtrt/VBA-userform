@@ -1,0 +1,20 @@
+Private Sub CommandButton1_Click()
+MsgBox "被點了"
+End Sub
+
+Private Sub CommandButton2_Click()
+MsgBox "已取消"
+End
+End Sub
+
+
+Private Sub UserForm_Initialize()
+TextBox1.SetFocus
+TextBox1.ControlTipText = "請輸入姓名"
+TextBox1.MousePointer = fmMousePointerHelp
+TextBox1.BackColor = &HC0C0C0
+TextBox1.ForeColor = &HFF&
+Me.CommandButton1.Default = True
+Me.CommandButton2.Cancel = True
+End Sub
+屬性視窗裡面有甚麼就可以設定甚麼
