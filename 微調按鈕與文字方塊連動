@@ -1,0 +1,54 @@
+Private Sub UserForm_Initialize()
+With Me.SpinButton1
+    .Max = 20
+    .Min = 1
+    .SmallChange = 1
+    .Value = 19
+
+End With
+Me.TextBox1.TextAlign = fmTextAlignCenter
+End Sub
+
+Private Sub SpinButton1_Change()
+
+TextBox1.Value = SpinButton1.Value
+
+End Sub
+
+'*************************************************
+'微調按鈕，當到達最大值時，反向變回最小值(但原理還不是很懂Orz)
+Dim mySpn As Boolean
+Private Sub UserForm_Initialize()
+With Me.SpinButton1
+    .Max = 20
+    .Min = 1
+    .SmallChange = 1
+    .Value = 15
+
+End With
+Me.TextBox1.TextAlign = fmTextAlignCenter
+End Sub
+
+Private Sub SpinButton1_Change()
+mySpn = True
+TextBox1.Value = SpinButton1.Value
+mySpn = SpinButton1.Value
+End Sub
+
+Private Sub SpinButton1_SpinDown()
+With SpinButton1
+    If mySpn = False Then
+        If .Value = .Min Then .Value = .Max
+    End If
+    mySpn = False
+End With
+End Sub
+
+Private Sub SpinButton1_SpinUp()
+With SpinButton1
+    If mySpn = False Then
+        If .Value = .Max Then .Value = .Min
+    End If
+    mySpn = False
+End With
+End Sub
