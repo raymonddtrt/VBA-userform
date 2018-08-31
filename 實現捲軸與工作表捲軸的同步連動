@@ -1,0 +1,17 @@
+Private Sub UserForm_Initialize()
+With Me.ScrollBar1
+    .Max = 100
+    .Min = 1
+    .SmallChange = 1
+    .LargeChange = 30
+    .Value = ActiveWindow.VisibleRange.Cells(1).Row
+
+End With
+
+End Sub
+
+Private Sub ScrollBar1_Change()
+With ActiveWindow.VisibleRange
+    Application.Goto Cells(ScrollBar1.Value, .Cells(1).Column), True
+End With
+End Sub
